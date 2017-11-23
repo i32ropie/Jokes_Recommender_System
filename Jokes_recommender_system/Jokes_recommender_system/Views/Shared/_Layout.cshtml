@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jokes</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="collapse navbar-collapse" id="myNavbar">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">Jokes</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li>@Html.ActionLink("Animal", "Category", "Home", new { category = "Animal" }, null)</li>
+                <li>@Html.ActionLink("Blonde", "Category", "Home", new { category = "Blonde" }, null)</li>
+                <li>@Html.ActionLink("Blue Collar", "Category", "Home", new { category = "Blue Collar" }, null)</li>
+                <li>@Html.ActionLink("Dark humor", "Category", "Home", new { category = "Dark Humor" }, null)</li>
+                <li>@Html.ActionLink("Dirty", "Category", "Home", new { category = "Dirty" }, null)</li>
+                <li>@Html.ActionLink("Doctor", "Category", "Home", new { category = "Doctor" }, null)</li>
+                <li>@Html.ActionLink("Fat", "Category", "Home", new { category = "Fat" }, null)</li>
+                <li>@Html.ActionLink("Food", "Category", "Home", new { category = "Food" }, null)</li>
+                <li>@Html.ActionLink("God", "Category", "Home", new { category = "God" }, null)</li>
+                <li>@Html.ActionLink("Gross", "Category", "Home", new { category = "Gross" }, null)</li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        More categories
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>@Html.ActionLink("Insults", "Category", "Home", new { category = "Insults" }, null)</li>
+                        <li>@Html.ActionLink("Kids", "Category", "Home", new { category = "Kids" }, null)</li>
+                        <li>@Html.ActionLink("Lookin' Good", "Category", "Home", new { category = "Lookin' Good" }, null)</li>
+                        <li>@Html.ActionLink("Marriage", "Category", "Home", new { category = "Marriage" }, null)</li>
+                        <li>@Html.ActionLink("Men/Women", "Category", "Home", new { category = "Men/Women" }, null)</li>
+                        <li>@Html.ActionLink("Miscellaneous", "Category", "Home", new { category = "Miscellaneous" }, null)</li>
+                        <li>@Html.ActionLink("Money", "Category", "Home", new { category = "Money" }, null)</li>
+                        <li>@Html.ActionLink("Nationality", "Category", "Home", new { category = "Nationality" }, null)</li>
+                        <li>@Html.ActionLink("News & Politics", "Category", "Home", new { category = "News & Politics" }, null)</li>
+                        <li>@Html.ActionLink("Partying & Bad Behavior", "Category", "Home", new { category = "Partying & Bad Behavior" }, null)</li>
+                        <li>@Html.ActionLink("Pick-Up Lines", "Category", "Home", new { category = "Pick-Up Lines" }, null)</li>
+                        <li>@Html.ActionLink("Police & Military", "Category", "Home", new { category = "Police & Military" }, null)</li>
+                        <li>@Html.ActionLink("Pop Culture & Celebrity", "Category", "Home", new { category = "Pop Culture & Celebrity" }, null)</li>
+                        <li>@Html.ActionLink("School", "Category", "Home", new { category = "School" }, null)</li>
+                        <li>@Html.ActionLink("Sports & Athletes", "Category", "Home", new { category = "Sports & Athletes" }, null)</li>
+                        <li>@Html.ActionLink("Technology", "Category", "Home", new { category = "Technology" }, null)</li>
+                        <li>@Html.ActionLink("Travel & Car", "Category", "Home", new { category = "Travel & Car" }, null)</li>
+                        <li>@Html.ActionLink("Work", "Category", "Home", new { category = "Work" }, null)</li>
+                        <li>@Html.ActionLink("Yo'Mama", "Category", "Home", new { category = "Yo' Mama" }, null)</li>
+                    </ul>
+                </li>
+            </ul>
+            @Html.Partial("_LoginPartial")
+        </div>
+    </nav>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,50 @@
+﻿@if (ViewContext.HttpContext.User.Identity.IsAuthenticated)
+{
+    if (ViewBag.Liked == null)
+    {
+    <p class="text-center">
+        <a href="@Url.Action("RatingClicked", "Joke", new { liked = true, jokeId = Model.Id })" class="btn btn-warning">
+            <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+        </a>
+        <a href="@Url.Action("RatingClicked", "Joke", new { liked = false, jokeId = Model.Id })" class="btn btn-warning">
+            <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
+        </a>
+    </p>
+    }
+    else
+    {
+        if (ViewBag.Liked)
+        {
+        <p class="text-center">
+            <a href="@Url.Action("RatingClicked", "Joke", new { liked = true, jokeId = Model.Id })" class="btn btn-success disabled">
+                <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+            </a>
+            <a href="@Url.Action("RatingClicked", "Joke", new { liked = false, jokeId = Model.Id })" class="btn btn-warning disabled">
+                <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
+            </a>
+        </p>
+        }
+        else
+        {
+            <p class="text-center">
+                <a href="@Url.Action("RatingClicked", "Joke", new { liked = true, jokeId = Model.Id })" class="btn btn-warning disabled">
+                    <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+                </a>
+                <a href="@Url.Action("RatingClicked", "Joke", new { liked = false, jokeId = Model.Id })" class="btn btn-success disabled">
+                    <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
+                </a>
+            </p>
+        }
+    }
+}
+@if (!ViewContext.HttpContext.User.Identity.IsAuthenticated)
+{
+    <p class="text-center">
+        <a href="@Url.Action("RatingClicked", "Joke", new { liked = true, jokeId = Model.Id})" class="btn btn-warning disabled">
+            <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+        </a>
+        <a href="@Url.Action("RatingClicked", "Joke", new { liked = false, jokeId = Model.Id})" class="btn btn-warning disabled">
+            <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
+        </a>
+    </p>
+}

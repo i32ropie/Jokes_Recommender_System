@@ -1,0 +1,20 @@
+﻿@model Jokes_recommender_system.Models.Entities.Joke
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>@Model.Category</h2>
+<h3>@Model.Title</h3>
+
+
+<div class="jumbotron">
+    <p class="text-center">
+        @Html.DisplayFor(model => model.Text)
+    </p>
+</div>
+<div class="row">
+    
+</div>
+@Html.Partial("_LikeDislikePartial")
+@Html.Partial("_RecommendPartial")

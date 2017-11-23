@@ -1,0 +1,28 @@
+﻿@model Jokes_recommender_system.Models.Entities.Joke
+
+@{
+    ViewBag.Title = "Category Page";
+}
+
+<h2>@Model.Category</h2>
+<h3>@Model.Title</h3>
+<div class="jumbotron">
+    <p class="text-center">
+        @Model.Text
+    </p>
+</div>
+@Html.Partial("_LikeDislikePartial")
+<hr />
+<div class="row">
+    <div class="container pull-right">
+        <a href="@Url.Action("Index", "Home")" class="btn btn-warning">Next random joke</a>
+        @if (ViewContext.HttpContext.User.Identity.IsAuthenticated)
+        {
+            <a href="@Url.Action("Recommended", "Joke")" class="btn btn-warning">Next recommended joke</a>
+        }
+        @if (!ViewContext.HttpContext.User.Identity.IsAuthenticated)
+        {
+            <a href="@Url.Action("Recommended", "Joke")" class="btn btn-warning disabled">Next recommended joke</a>
+        }
+    </div>
+</div>

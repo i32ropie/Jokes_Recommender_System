@@ -1,0 +1,29 @@
+﻿
+@if (ViewContext.HttpContext.User.Identity.IsAuthenticated)
+{
+    <hr />
+    <div class="row">
+        <div class="container pull-right">
+            <a href="@Url.Action("Similar", "Joke")" class="btn btn-warning">
+                Similar recommended joke
+            </a>
+            <a href="@Url.Action("Different", "Joke")" class="btn btn-warning">
+                Different recommended joke
+            </a>
+        </div>
+    </div>
+}
+@if (!ViewContext.HttpContext.User.Identity.IsAuthenticated)
+{
+    <hr />
+    <div class="row">
+        <div class="container pull-right">
+            <a href="@Url.Action("Similar", "Joke")" class="btn btn-warning disabled">
+                Similar recommended joke
+            </a>
+            <a href="@Url.Action("Different", "Joke")" class="btn btn-warning disabled">
+                Different recommended joke
+            </a>
+        </div>
+    </div>
+}
