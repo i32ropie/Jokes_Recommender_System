@@ -48,15 +48,15 @@ namespace Jokes_recommender_system.Controllers
             return RedirectToAction("Category", "Home", new { category = category});
         }
 
-        public ActionResult Similar()
+        public ActionResult Similar(int jokeId)
         {
-            int similarId = jokeFacade.GetSimilarRecommendedJoke(User.Identity.Name);
+            int similarId = jokeFacade.GetSimilarRecommendedJoke(User.Identity.Name, jokeId);
             return RedirectToAction("Details",new { id = similarId });
         }
 
-        public ActionResult Different()
+        public ActionResult Different(int jokeId)
         {
-            int differentId = jokeFacade.GetDifferentRecommendedJoke(User.Identity.Name);
+            int differentId = jokeFacade.GetDifferentRecommendedJoke(User.Identity.Name, jokeId);
             return RedirectToAction("Details", new { id = differentId });
         }
 
