@@ -22,9 +22,6 @@ namespace Jokes_recommender_system.Models.Facades
 
         public int GetSimilarRecommendedJoke(string userName, int jokeId)
         {
-            // apply similar recommendations here
-            // prefered category + similar keywords + wasnt rated by the user
-
             string preferencedCategories = db.Users.Where(user => user.UserName == userName).Select(user => user.CategoryPreference).FirstOrDefault();
 
             IEnumerable<string> categories = (preferencedCategories == null) ? categories = GetCategories() : categories = preferencedCategories.Split(',');
@@ -33,7 +30,8 @@ namespace Jokes_recommender_system.Models.Facades
             {
                 IEnumerable<Joke> jokesFromCategory = GetJokesFromCategory(category);
                 IEnumerable<Joke> notRatedJokes = jokesFromCategory.Where(joke => ratingFacade.ratedByUser(joke.Id, userName) == null).ToList();
-                IEnumerable<Joke> orderedJokes = notRatedJokes.OrderByDescending(joke => getJaccardIndex(jokeId, joke.Id));
+                IEnumerable<Joke> filteredByLength = notRatedJokes.Where(joke => GetJokeById(jokeId).IsLong == joke.IsLong);
+                IEnumerable<Joke> orderedJokes = filteredByLength.OrderByDescending(joke => getJaccardIndex(jokeId, joke.Id));
 
                 if (orderedJokes.FirstOrDefault() != null) return orderedJokes.First().Id;
             }
@@ -54,9 +52,6 @@ namespace Jokes_recommender_system.Models.Facades
 
         public int GetDifferentRecommendedJoke(string userName, int jokeId)
         {
-            // apply similar recommendations here
-            // prefered category + similar keywords + wasnt rated by the user
-
             string preferencedCategories = db.Users.Where(user => user.UserName == userName).Select(user => user.CategoryPreference).FirstOrDefault();
 
             IEnumerable<string> categories = (preferencedCategories == null) ? categories = GetCategories() : categories = preferencedCategories.Split(',');
@@ -65,7 +60,8 @@ namespace Jokes_recommender_system.Models.Facades
             {
                 IEnumerable<Joke> jokesFromCategory = GetJokesFromCategory(category);
                 IEnumerable<Joke> notRatedJokes = jokesFromCategory.Where(joke => ratingFacade.ratedByUser(joke.Id, userName) == null).ToList();
-                IEnumerable<Joke> orderedJokes = notRatedJokes.OrderBy(joke => getJaccardIndex(jokeId, joke.Id));
+                IEnumerable<Joke> filteredByLength = notRatedJokes.Where(joke => GetJokeById(jokeId).IsLong != joke.IsLong);
+                IEnumerable<Joke> orderedJokes = filteredByLength.OrderBy(joke => getJaccardIndex(jokeId, joke.Id));
 
                 if (orderedJokes.FirstOrDefault() != null) return orderedJokes.First().Id;
             }
