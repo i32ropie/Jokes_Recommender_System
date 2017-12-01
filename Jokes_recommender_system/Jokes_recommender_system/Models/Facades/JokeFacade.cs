@@ -30,11 +30,7 @@ namespace Jokes_recommender_system.Models.Facades
             foreach (string category in categories)
             {
                 IEnumerable<Joke> jokesFromCategory = GetJokesFromCategory(category);
-<<<<<<< HEAD
                 IEnumerable<Joke> notRatedJokes = jokesFromCategory.Where(joke => ratingFacade.RatedByUser(joke.Id, userName) == null).ToList();
-=======
-                IEnumerable<Joke> notRatedJokes = jokesFromCategory.Where(joke => ratingFacade.ratedByUser(joke.Id, userName) == null).ToList();
->>>>>>> b52a7b3bce14381e2eb31d08e9fc14a37e399517
                 IEnumerable<Joke> filteredByLength = notRatedJokes.Where(joke => GetJokeById(jokeId).IsLong == joke.IsLong);
                 IEnumerable<Joke> orderedJokes = filteredByLength.OrderByDescending(joke => getJaccardIndex(jokeId, joke.Id));
 
@@ -64,11 +60,7 @@ namespace Jokes_recommender_system.Models.Facades
             foreach (string category in categories)
             {
                 IEnumerable<Joke> jokesFromCategory = GetJokesFromCategory(category);
-<<<<<<< HEAD
                 IEnumerable<Joke> notRatedJokes = jokesFromCategory.Where(joke => ratingFacade.RatedByUser(joke.Id, userName) == null).ToList();
-=======
-                IEnumerable<Joke> notRatedJokes = jokesFromCategory.Where(joke => ratingFacade.ratedByUser(joke.Id, userName) == null).ToList();
->>>>>>> b52a7b3bce14381e2eb31d08e9fc14a37e399517
                 IEnumerable<Joke> filteredByLength = notRatedJokes.Where(joke => GetJokeById(jokeId).IsLong != joke.IsLong);
                 IEnumerable<Joke> orderedJokes = filteredByLength.OrderBy(joke => getJaccardIndex(jokeId, joke.Id));
 
@@ -200,11 +192,6 @@ namespace Jokes_recommender_system.Models.Facades
         {
             db.Jokes.AddRange(jokes);
             db.SaveChanges();
-        }
-
-        public IEnumerable<string> GetCategories()
-        {
-            return db.Jokes.Select(joke => joke.Category).Distinct().ToList();
         }
 
         public Dictionary<string, double> FindKeywords(IEnumerable<Joke> jokes, string[] kw)
