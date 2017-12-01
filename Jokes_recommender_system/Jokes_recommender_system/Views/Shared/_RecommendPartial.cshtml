@@ -1,13 +1,12 @@
-﻿
-@if (ViewContext.HttpContext.User.Identity.IsAuthenticated)
+﻿@if (ViewContext.HttpContext.User.Identity.IsAuthenticated)
 {
     <hr />
     <div class="row">
         <div class="container pull-right">
-            <a href="@Url.Action("Similar", "Joke")" class="btn btn-warning">
+            <a href="@Url.Action("Similar", "Joke", new { jokeId = Model.Id })" class="btn btn-warning">
                 Similar recommended joke
             </a>
-            <a href="@Url.Action("Different", "Joke")" class="btn btn-warning">
+            <a href="@Url.Action("Different", "Joke", new { jokeId = Model.Id })" class="btn btn-warning">
                 Different recommended joke
             </a>
         </div>
@@ -18,10 +17,10 @@
     <hr />
     <div class="row">
         <div class="container pull-right">
-            <a href="@Url.Action("Similar", "Joke")" class="btn btn-warning disabled">
+            <a href="@Url.Action("Similar", "Joke", new { jokeId = Model.Id })" class="btn btn-warning disabled">
                 Similar recommended joke
             </a>
-            <a href="@Url.Action("Different", "Joke")" class="btn btn-warning disabled">
+            <a href="@Url.Action("Different", "Joke", new { jokeId = Model.Id })" class="btn btn-warning disabled">
                 Different recommended joke
             </a>
         </div>

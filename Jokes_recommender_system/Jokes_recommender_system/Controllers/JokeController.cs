@@ -35,7 +35,7 @@ namespace Jokes_recommender_system.Controllers
 
             if(User.Identity.IsAuthenticated)
             {
-                ViewBag.Liked = ratingFacade.ratedByUser(id, User.Identity.Name);
+                ViewBag.Liked = ratingFacade.RatedByUser(id, User.Identity.Name);
             }
             else
                 ViewBag.Liked = null;
@@ -48,21 +48,22 @@ namespace Jokes_recommender_system.Controllers
             return RedirectToAction("Category", "Home", new { category = category});
         }
 
-        public ActionResult Similar()
+        public ActionResult Similar(int jokeId)
         {
-            int similarId = jokeFacade.GetSimilarRecommendedJoke(User.Identity.Name);
-            return RedirectToAction("Details",new { id = similarId });
+            int similarId = jokeFacade.GetSimilarRecommendedJoke(User.Identity.Name, jokeId);
+            return RedirectToAction("Details", new { id = similarId });
         }
 
-        public ActionResult Different()
+        public ActionResult Different(int jokeId)
         {
-            int differentId = jokeFacade.GetDifferentRecommendedJoke(User.Identity.Name);
+            int differentId = jokeFacade.GetDifferentRecommendedJoke(User.Identity.Name, jokeId);
             return RedirectToAction("Details", new { id = differentId });
         }
 
-        public ActionResult Recommended()
+        public ActionResult Recommended(int id)
         {
-            Joke recommendedJoke = jokeFacade.GetRecommendedJoke(User.Identity.Name);
+            int jokeId = jokeFacade.GetRecommendedJoke(User.Identity.Name, id);
+            Joke recommendedJoke = jokeFacade.GetJokeById(jokeId);
             return View("~/Views/Home/Index.cshtml", recommendedJoke);
         }
 

@@ -18,7 +18,7 @@
         <a href="@Url.Action("Index", "Home")" class="btn btn-warning">Next random joke</a>
         @if (ViewContext.HttpContext.User.Identity.IsAuthenticated)
         {
-            <a href="@Url.Action("Recommended", "Joke")" class="btn btn-warning">Next recommended joke</a>
+            <a href="@Url.Action("Recommended", "Joke", new { id = Model.Id } )" class="btn btn-warning">Next recommended joke</a>
         }
         @if (!ViewContext.HttpContext.User.Identity.IsAuthenticated)
         {
