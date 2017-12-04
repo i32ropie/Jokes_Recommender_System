@@ -16,7 +16,8 @@ from rake_nltk import Rake
 r = Rake()
 
 # Load the jokes
-with open('jokes_dataSet_notOptimized.json') as f: jokes = json.load(f)
+with open('jokes_dataSet_notOptimized.json') as f:
+    jokes = json.load(f)
 print("[·] Jokes dataset loaded.")
 print("\t[·] Total of jokes loaded: {}".format(len(jokes)))
 
@@ -45,7 +46,8 @@ for x in jokes:
     r.extract_keywords_from_text(x['Joke'])
     # We look at r.degree items, sort them by it value, filter the ones that are
     # words and grab the first 4
-    x['Keywords'] = [y[0] for y in sorted(r.degree.items(), key=operator.itemgetter(1), reverse=True) if y[0].isalpha()][:4]
+    x['Keywords'] = [y[0] for y in sorted(r.degree.items(
+    ), key=operator.itemgetter(1), reverse=True) if y[0].isalpha()][:4]
 print("\t[·] Keywords extracted.")
 
 # Now we will filter again the jokes by category to see the amount of short/long
@@ -64,10 +66,15 @@ print("[·] Showing the balance of the dataset.\n")
 print("| Category                  |  Long | Short |")
 print("|---------------------------+-------+-------|")
 for x in jokes_categories:
-    print("| {:25} | {:5} | {:5} |".format(x, len([y for y in jokes_categories[x] if y['Length'] >= 25]), len([y for y in jokes_categories[x] if y['Length'] < 25])))
+    print("| {:25} | {:5} | {:5} |".format(x,
+                                           len([y for y in jokes_categories[x] if y['Length'] >= 25]),
+                                           len([y for y in jokes_categories[x] if y['Length'] < 25])))
     long_jokes += len([y for y in jokes_categories[x] if y['Length'] >= 25])
     short_jokes += len([y for y in jokes_categories[x] if y['Length'] < 25])
-print("\nTotal of long jokes: {}\nTotal of short jokes: {}".format(long_jokes, short_jokes))
+print(
+    "\nTotal of long jokes: {}\nTotal of short jokes: {}".format(
+        long_jokes,
+        short_jokes))
 
 """
 As we can see, the dataset is not balanced.
@@ -163,10 +170,15 @@ print("[·] Showing the balance of the dataset.\n")
 print("| Category                  |  Long | Short |")
 print("|---------------------------+-------+-------|")
 for x in jokes_categories_2:
-    print("| {:25} | {:5} | {:5} |".format(x, len([y for y in jokes_categories_2[x] if y['Length'] >= 25]), len([y for y in jokes_categories_2[x] if y['Length'] < 25])))
+    print("| {:25} | {:5} | {:5} |".format(x,
+                                           len([y for y in jokes_categories_2[x] if y['Length'] >= 25]),
+                                           len([y for y in jokes_categories_2[x] if y['Length'] < 25])))
     long_jokes += len([y for y in jokes_categories_2[x] if y['Length'] >= 25])
     short_jokes += len([y for y in jokes_categories_2[x] if y['Length'] < 25])
-print("\nTotal of long jokes: {}\nTotal of short jokes: {}".format(long_jokes, short_jokes))
+print(
+    "\nTotal of long jokes: {}\nTotal of short jokes: {}".format(
+        long_jokes,
+        short_jokes))
 
 """
 As we can see, or dataset is now balanced.
@@ -209,6 +221,7 @@ Total of short jokes: 1444
 Last remaining thing is to save our dataset.
 """
 
-with open('jokes.json', 'w') as f: json.dump(jokes_2, f, indent=4)
+with open('jokes.json', 'w') as f:
+    json.dump(jokes_2, f, indent=4)
 
 print("\n[·] Balanced dataset saved as 'jokes.json'\n")
