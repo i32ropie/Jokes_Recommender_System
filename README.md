@@ -8,3 +8,4 @@ Structure:
 Team roles:
   - Adam Teršl: Web scraping data set, creating database model, developing web application, presenting
   - Andrej Boniš: Term frequency/inverse document frequency recommendation, collaborative filtering recommendation by category, policy of likes/dislikes, presenting
+  - Eduardo Roldán: Filtering and balancing the dataset.
